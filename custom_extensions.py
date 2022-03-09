@@ -100,9 +100,9 @@ query_string = """
 """
 
 
-def run_schema(custom_extension):
-    schema = strawberry.Schema(query=Query, extensions=[custom_extension])
-    result = schema.execute_sync(query_string, root_value=Query())
+def run_schema(custom_extension, query_passed=Query, query_string_passed=query_string):
+    schema = strawberry.Schema(query=query_passed, extensions=[custom_extension])
+    result = schema.execute_sync(query_string_passed, root_value=query_passed)
     print(result)
     print("Ended schema run .....")
 
