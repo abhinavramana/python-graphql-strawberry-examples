@@ -72,7 +72,24 @@ class Query:
 
 # Since they are not reachable from the Query field itself, Strawberry won't be able to find them by default.
 schema = strawberry.federation.Schema(query=Query, types=[Book, Review])
+# ========== GATEWAY =================
+"""
+const { ApolloServer } = require("apollo-server");
+const { ApolloGateway } = require("@apollo/gateway");
 
+const gateway = new ApolloGateway({
+  serviceList: [
+    { name: "books", url: "http://localhost:8000" },
+    { name: "reviews", url: "http://localhost:8080" },
+  ],
+});
+
+const server = new ApolloServer({ gateway });
+
+server.listen().then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
+});
+"""
 # https://github.com/strawberry-graphql/federation-demo/blob/main/gateway/server.ts
 
 q = """{
