@@ -1,1 +1,4 @@
 fastapi~=0.74.1
+wsproto
+websockets
+uvicorn
