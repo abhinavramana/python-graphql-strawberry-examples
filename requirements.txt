@@ -1,5 +1,5 @@
 fastapi==0.74.0
 starlette==0.17.1
 strawberry-graphql[fastapi]==0.97.0
-psycopg2-binary==2.8.6
+psycopg2-binary==2.9.3
 uvicorn==0.17.5
