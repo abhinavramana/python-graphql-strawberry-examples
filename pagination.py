@@ -61,7 +61,7 @@ def build_book_cursor(book: Book):
 Cursor = str
 
 
-def get_books(first: int = 10, after: Optional[Cursor] = UNSET) -> Connection[Book]:
+def get_books(first: int = 10, after: Optional[int] = UNSET) -> Connection[Book]:
     """
     A non-trivial implementation should efficiently fetch only
     the necessary books after the offset.
@@ -102,9 +102,9 @@ class Query:
 schema = strawberry.Schema(query=Query)
 # strawberry server pagination
 
-"""
+q = """
 {
-    books {
+    books(first: 5, after: 3){
         pageInfo {
             hasNextPage
             hasPreviousPage
@@ -122,3 +122,6 @@ schema = strawberry.Schema(query=Query)
 
 }
 """
+
+result = schema.execute_sync(q, root_value=Query())
+print(result)

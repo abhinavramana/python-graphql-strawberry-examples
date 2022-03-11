@@ -118,5 +118,5 @@ query_mutation_register_failure = """mutation {
       }
     }"""
 schemaRegisterUser = strawberry.Schema(mutation=Mutation, query=QueryForOptionalResults)
-result = schema.execute_sync(q)
+result = schema.execute_sync(query_mutation_register_success)
 print(result)
